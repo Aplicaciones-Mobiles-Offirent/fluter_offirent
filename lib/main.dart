@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'office.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(OfficePage());
 }
 
 class MyApp extends StatelessWidget {
