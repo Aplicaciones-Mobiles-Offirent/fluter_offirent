@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/profile_config_view.dart';
 
 import 'office.dart';
 
 void main() {
-  runApp(OfficePage());
+  runApp(ProfileConfigPage());
 }
 
 class MyApp extends StatelessWidget {
