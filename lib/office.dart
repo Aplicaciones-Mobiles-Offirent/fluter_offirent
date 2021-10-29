@@ -56,7 +56,7 @@ class _OfficePageState extends State<OfficePage> {
                       "No offices found :(",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.greenAccent,
+                        color: Colors.indigo,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                       )
