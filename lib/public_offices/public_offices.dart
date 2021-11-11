@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/widgets/drawer_widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -97,6 +98,7 @@ class _PublicOfficesState extends State<PublicOffices> {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: GridView.count(
           crossAxisCount: 2,
           padding: const EdgeInsets.all(16.0),
@@ -107,3 +109,4 @@ class _PublicOfficesState extends State<PublicOffices> {
     );
   }
 }
+

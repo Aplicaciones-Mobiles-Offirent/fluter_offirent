@@ -10,7 +10,7 @@ class RouteGenerator {
 
       //case '/':
         //return MaterialPageRoute(builder: (_) => FirstPage());
-      case '/public offices':
+      case '/public_offices':
         return MaterialPageRoute(builder: (_) => PublicOffices());
 
       default:
