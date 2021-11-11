@@ -79,7 +79,7 @@ class DrawerWidget extends StatelessWidget {
               leading: Icon(Icons.account_circle_rounded),
               title: Text("Perfil"),
               onTap: () {
-                Navigator.of(context).pushNamed('/public_offices');
+                Navigator.of(context).pushNamed('/profile_config_view');
               },
             ),
             ListTile(

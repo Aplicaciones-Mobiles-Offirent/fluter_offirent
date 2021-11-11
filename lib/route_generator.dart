@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/profile_config_view.dart';
 //import 'package:flutter_offirent/main.dart';
 import 'package:flutter_offirent/public_offices/public_offices.dart';
 
@@ -13,6 +14,8 @@ class RouteGenerator {
       case '/public_offices':
         return MaterialPageRoute(builder: (_) => PublicOffices());
 
+      case '/profile_config_view':
+        return MaterialPageRoute(builder: (_) => ProfileConfigPage());
       default:
         return _errorRoute();
     }
