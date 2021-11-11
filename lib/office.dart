@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/http_helper.dart';
 import 'package:flutter_offirent/model/office.dart';
 import 'favorites_view.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
+/*void main() {
   runApp(OfficePage());
-}
+}*/
 
 class OfficePage extends StatefulWidget {
 
@@ -28,6 +29,8 @@ class _OfficePageState extends State<OfficePage> {
     for (var ele in jsonData){
       Office office = Office(ele["id"],
           ele["address"],
+          ele["image"],
+          ele["name"],
           ele["floor"],
           ele["capacity"],
           ele["allowResource"],
@@ -41,6 +44,7 @@ class _OfficePageState extends State<OfficePage> {
     print(offices.length);
     return offices;
   }
+
 
   @override
   Widget build(BuildContext context){
