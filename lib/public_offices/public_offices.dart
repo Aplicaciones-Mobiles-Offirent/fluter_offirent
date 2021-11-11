@@ -52,7 +52,9 @@ class _PublicOfficesState extends State<PublicOffices> {
               children: <Widget>[
                 AspectRatio(
                   aspectRatio: 18.0 / 11.0,
-                  child: Image.network(data[i]["image"]),
+                  child: FadeInImage(
+                      placeholder: AssetImage('lib/assets/loading.gif'),
+                      image: NetworkImage(data[i]["image"]))
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
@@ -69,7 +71,7 @@ class _PublicOfficesState extends State<PublicOffices> {
           ),
         ),
               onTap: () {
-                Navigator.of(context).pushNamed('/office_page');
+                Navigator.of(context).pushNamed('/office_detail');
               },
             ),
       );

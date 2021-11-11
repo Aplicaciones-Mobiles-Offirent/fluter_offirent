@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offirent/login.dart';
 import 'package:flutter_offirent/office.dart';
+import 'package:flutter_offirent/office_detail.dart';
 import 'package:flutter_offirent/profile_config_view.dart';
 //import 'package:flutter_offirent/main.dart';
 import 'package:flutter_offirent/public_offices/public_offices.dart';
@@ -24,6 +25,10 @@ class RouteGenerator {
 
       case '/office_page':
         return MaterialPageRoute(builder: (_) => OfficePage());
+
+      case '/office_detail':
+        return MaterialPageRoute(builder: (_) => OfficeDetail());
+
       default:
         return _errorRoute();
     }
