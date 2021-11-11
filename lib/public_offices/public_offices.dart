@@ -93,6 +93,7 @@ class _PublicOfficesState extends State<PublicOffices> {
             )
         ),*/
         title: Text("Oficinas"),
+        backgroundColor: Colors.indigo,
         actions: <Widget>[
           IconButton(
               onPressed: (){

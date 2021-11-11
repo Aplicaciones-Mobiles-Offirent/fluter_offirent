@@ -9,7 +9,7 @@ class OfficeDetail extends StatelessWidget {
         appBar: AppBar(
           title:  Text("Información de la oficina",
               style: TextStyle(color: Colors.black)),
-          backgroundColor: Colors.tealAccent,
+          backgroundColor: Colors.indigo,
         ),
         body: ListView(
           children: <Widget>[

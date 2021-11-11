@@ -20,18 +20,21 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              backgroundColor: Theme
-                  .of(context)
-                  .scaffoldBackgroundColor,
+              backgroundColor: Colors.indigo,
               elevation: 1,
-              leading: IconButton(
+              /*leading: IconButton(
                 icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.indigo,
                 ),
                 onPressed: () {},
+              ),*/
+              title: Text("Edit Profile",
+                style: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,),
               ),
-
             ),
             body: Container(
               padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -41,14 +44,14 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
                 },
                 child: ListView(
                   children: [
-                    const Text(
+                    /*const Text(
                       "Edit Profile",
                       style: TextStyle(
                         fontSize: 25,
                         color: Colors.indigoAccent,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    ),*/
                     const SizedBox(
                       height: 35,
                     ),
