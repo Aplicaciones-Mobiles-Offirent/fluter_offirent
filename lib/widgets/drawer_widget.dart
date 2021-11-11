@@ -57,14 +57,14 @@ class DrawerWidget extends StatelessWidget {
               leading: Icon(Icons.today),
               title: Text("Mis Reservas"),
               onTap: () {
-                Navigator.of(context).pushNamed('/public_offices');
+                Navigator.of(context).pushNamed('/my_reservations');
               },
             ),
             ListTile(
               leading: Icon(Icons.home_work),
               title: Text("Mis Locales"),
               onTap: () {
-                Navigator.of(context).pushNamed('/public_offices');
+                Navigator.of(context).pushNamed('/provider_offices');
               },
             ),
 

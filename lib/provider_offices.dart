@@ -69,7 +69,7 @@ class _ProviderOfficesState extends State<ProviderOffices> {
                     backgroundImage: NetworkImage(myOffices[position].image),
                   ),
                   title: Text(myOffices[position].name),
-                  subtitle: Text('Score:'+ myOffices[position].score + ' - Price: S/.' +myOffices[position].price.toString()),
+                  subtitle: Text('Score:'+ myOffices[position].score.toString() + ' - Price: S/.' +myOffices[position].price.toString()),
                 ),
               );
             }

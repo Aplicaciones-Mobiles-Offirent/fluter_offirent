@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offirent/login.dart';
+import 'package:flutter_offirent/my_reservations.dart';
 import 'package:flutter_offirent/office.dart';
 import 'package:flutter_offirent/office_detail.dart';
 import 'package:flutter_offirent/profile_config_view.dart';
+import 'package:flutter_offirent/provider_offices.dart';
 //import 'package:flutter_offirent/main.dart';
 import 'package:flutter_offirent/public_offices/public_offices.dart';
 
@@ -29,6 +31,11 @@ class RouteGenerator {
       case '/office_detail':
         return MaterialPageRoute(builder: (_) => OfficeDetail());
 
+      case '/provider_offices':
+        return MaterialPageRoute(builder: (_) => ProviderOffices());
+
+      case '/my_reservations':
+        return MaterialPageRoute(builder: (_) => MyReservations());
       default:
         return _errorRoute();
     }
