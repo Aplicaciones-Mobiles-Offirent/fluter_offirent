@@ -21,7 +21,7 @@ class _OfficePageState extends State<OfficePage> {
 
   Future getOfficeData() async {
     var response =
-        await http.get(Uri.http('api-mobil.herokuapp.com/api/', 'offices'));
+        await http.get(Uri.http('https://api-e404.herokuapp.com/api/', 'offices'));
     var jsonData = jsonDecode(response.body);
     List<Office> offices = [];
 

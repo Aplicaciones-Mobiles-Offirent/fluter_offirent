@@ -42,31 +42,36 @@ class _PublicOfficesState extends State<PublicOffices> {
   @override
   Widget build(BuildContext context) {
 
-    List<Card> _buildGridCards() {
-      List<Card> cards = List.generate(data.length,
-            (int i) => Card(
+    List<InkWell> _buildGridCards() {
+      List<InkWell> cards = List.generate(data.length,
+            (int i) => InkWell(
+              child: Card(
           clipBehavior: Clip.antiAlias,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 18.0 / 11.0,
-                child: Image.network(data[i]["image"]),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(data[i]["name"]),
-                    SizedBox(height: 8),
-                    Text(data[i]["price"].toString())
-                  ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 18.0 / 11.0,
+                  child: Image.network(data[i]["image"]),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(data[i]["name"]),
+                      SizedBox(height: 8),
+                      Text(data[i]["price"].toString())
+                    ],
+                  ),
+                ),
+              ],
           ),
         ),
+              onTap: () {
+                Navigator.of(context).pushNamed('/office_page');
+              },
+            ),
       );
       return cards;
     }
