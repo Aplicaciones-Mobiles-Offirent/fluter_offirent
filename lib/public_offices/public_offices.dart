@@ -76,7 +76,7 @@ class _PublicOfficesState extends State<PublicOffices> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+        /*leading: IconButton(
             onPressed: () {
               print('Menu button');   // solo para pinter en consola
             },
@@ -84,7 +84,7 @@ class _PublicOfficesState extends State<PublicOffices> {
               Icons.menu,
               //semanticLabel: 'menu',
             )
-        ),
+        ),*/
         title: Text("Oficinas"),
         actions: <Widget>[
           IconButton(
