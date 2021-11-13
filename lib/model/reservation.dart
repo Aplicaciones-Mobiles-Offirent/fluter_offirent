@@ -1,8 +1,8 @@
 class Reservation{
   int id=0;
   bool status = false;
-  DateTime initialDate=DateTime.utc(2000,11,15);
-  DateTime endDate=DateTime.utc(2000,11,16);
+  String initialDate="DateTime.utc(2000,11,15)";
+  String endDate="DateTime.utc(2000,11,16)";
   int officeId=0;
 
   Reservation(this.id,

@@ -8,9 +8,9 @@ class Office {
   int floor=0;
   int capacity=0;
   bool allowResource = true;
-  Float score=0 as Float;
+  double score=0.0;
   String description="";
-  Float price=0 as Float;
+  double price=0.0;
   bool status= true;
   String comment="";
 

@@ -59,6 +59,7 @@ class _MyReservationsState extends State<MyReservations> {
               );
             } else {
               final temporalOfficeId = reservations[position].officeId;
+              Office office = offices.firstWhere((element) => element.id == reservations[position].officeId);
 
                 return Card(
 
@@ -67,9 +68,9 @@ class _MyReservationsState extends State<MyReservations> {
                   child: ListTile(
                     onTap: () {},
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(offices[temporalOfficeId].image),
+                      backgroundImage: NetworkImage(office.image),
                     ),
-                    title: Text(offices[temporalOfficeId].name),
+                    title: Text(office.name),
                     subtitle: Text('Fecha inicio: '+reservations[position].initialDate.toString() + '  - Fecha fin: '+reservations[position].endDate.toString()),
                   ),
                 );

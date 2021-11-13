@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:flutter_offirent/model/office.dart';
 import 'package:flutter_offirent/model/reservation.dart';
@@ -12,7 +12,7 @@ class HttpHelper {
   final String urlBase = 'https://api-e404.herokuapp.com/api/';
 
   Future<List> getAllOffices() async {
-    final String officesQuery = urlBase+'/offices';
+    final String officesQuery = urlBase+'offices';
     http.Response response = await http.get(Uri.parse(officesQuery));
 
     if(response.statusCode == HttpStatus.ok) {
@@ -20,7 +20,8 @@ class HttpHelper {
       List myOffices = jsonResponse.map((i) => Office.fromJson(i)).toList();
       return myOffices;
     } else {
-      return null!;
+      List myOffice =[];
+      return myOffice;
     }
 
   }
@@ -74,7 +75,7 @@ class HttpHelper {
 
     if(response.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(response.body);
-      List reservations = jsonResponse.map((i) => Office.fromJson(i)).toList();
+      List reservations = jsonResponse.map((i) => Reservation.fromJson(i)).toList();
       return reservations;
     } else {
       return null!;
