@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class OfficeDetail extends StatelessWidget {
 
@@ -71,6 +72,47 @@ class OfficeDetail extends StatelessWidget {
                     fontSize: 20.0,
                   ),),
                 onPressed: (){}),
+            Container(
+              child: RatingBar.builder(
+                initialRating: 3,
+                minRating: 0.5,
+                itemCount: 5,
+                allowHalfRating: true,
+                itemSize: 30,
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
+              ),
+              alignment: Alignment.center,
+            ),
+            Container(
+              child: const TextField(
+                decoration: InputDecoration(
+                  hintText: "Escribe una reseña",
+                  labelStyle: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: 5,
+              ),
+              margin: EdgeInsets.all(10.0),
+            ),
+            Container(
+              width: 50,
+              child: TextButton(
+                  child: const Text("Publicar reseña",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),),
+                  onPressed: (){}),
+              margin: EdgeInsets.all(10.0),
+            ),
           ],
         ),
       ),
