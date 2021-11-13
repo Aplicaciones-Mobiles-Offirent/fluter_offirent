@@ -73,6 +73,15 @@ class OfficeDetail extends StatelessWidget {
                   ),),
                 onPressed: (){}),
             Container(
+              child: const Text("Reseña",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 23.0,
+                ),
+              ),
+              margin: EdgeInsets.all(10.0),
+            ),
+            Container(
               child: RatingBar.builder(
                 initialRating: 3,
                 minRating: 0.5,
