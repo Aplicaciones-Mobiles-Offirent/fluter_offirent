@@ -28,6 +28,8 @@ class _OfficePageState extends State<OfficePage> {
     for (var ele in jsonData){
       Office office = Office(ele["id"],
           ele["address"],
+          ele["name"],
+          ele["image"],
           ele["floor"],
           ele["capacity"],
           ele["allowResource"],
