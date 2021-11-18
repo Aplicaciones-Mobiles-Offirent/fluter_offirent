@@ -46,10 +46,10 @@ class _OfficeFiltersState extends State<OfficeFilters> {
   }
 
 
-  String onFilterChange(String change){
+  /*String onFilterChange(String change){
     change = filterC;
     return change;
-  };
+  };*/
 
   List<DropdownMenuItem<District>> buildDropDownMenuItems(List districts) {
     List<DropdownMenuItem<District>> items = [];
@@ -97,7 +97,7 @@ class _OfficeFiltersState extends State<OfficeFilters> {
           TextButton(
               child: Text("KDSFJHG"),
               onPressed: () {
-                onFilterChange("sdf");
+                //onFilterChange("sdf");
               },
           )
 
