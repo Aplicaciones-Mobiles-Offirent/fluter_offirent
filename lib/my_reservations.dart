@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_offirent/http_helper.dart';
 import 'package:flutter_offirent/model/office.dart';
@@ -65,13 +67,64 @@ class _MyReservationsState extends State<MyReservations> {
 
                   color: Colors.white,
                   elevation: 4.0,
-                  child: ListTile(
-                    onTap: () {},
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(office.image),
-                    ),
-                    title: Text(office.name),
-                    subtitle: Text('Fecha inicio: '+reservations[position].initialDate.toString() + '  - Fecha fin: '+reservations[position].endDate.toString()),
+                  clipBehavior: Clip.antiAlias,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 180,
+                        child: Image.network(office.image,
+                                  fit: BoxFit.fitHeight )
+                      ),
+                      Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                office.name,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold
+                                ),
+                                  textAlign: TextAlign.left
+                              ),
+                              SizedBox(height: 13,),
+                              Text("Fecha inicio: "+reservations[position].initialDate.split("T")[0],
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+
+                                ),
+                                  textAlign: TextAlign.left
+                              ),
+                              SizedBox(height: 8,),
+                              Text("Fecha fin: "+reservations[position].endDate.split("T")[0],
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              SizedBox(height: 13,),
+                              ButtonBar(
+
+                                children:[
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text("Eliminar")),
+                                  ElevatedButton(
+                                      onPressed: (){},
+                                      child: Text("Ver"))]
+
+                              ),
+
+                            ],
+                          ),
+                      )
+                    ],
                   ),
                 );
             }

@@ -33,7 +33,7 @@ class DrawerWidget extends StatelessWidget {
                         Text("Usuario",
                               style: TextStyle(fontSize: 20),),
                         SizedBox(height: 4.0,),
-                        Text("Correo de Usuario",
+                        Text("Correo",
                           style: TextStyle(fontSize: 14),),
                       ],
                     )
@@ -86,7 +86,7 @@ class DrawerWidget extends StatelessWidget {
               leading: Icon(Icons.logout),
               title: Text("Cerrar sesión"),
               onTap: () {
-                Navigator.of(context).pushNamed('/public_offices');
+                Navigator.of(context).pushNamed('/login');
               },
             ),
           ],
