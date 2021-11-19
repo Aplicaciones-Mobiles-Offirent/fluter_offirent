@@ -62,6 +62,19 @@ class _MyReservationsState extends State<MyReservations> {
             } else {
               final temporalOfficeId = reservations[position].officeId;
               Office office = offices.firstWhere((element) => element.id == reservations[position].officeId);
+              final reservationInitialDateOutputComplete = reservations[position].initialDate.toString().split(".")[0];
+              final  String reservationInitialDateOutputDate = reservationInitialDateOutputComplete.split("T")[0];
+              final String reservationInitialDateOutputHourComplete = reservationInitialDateOutputComplete.split("T")[1];
+              final reservationInitialDateOutputHourList = reservationInitialDateOutputHourComplete.split(":");
+              final String reservationInitialDateOutputToUser = reservationInitialDateOutputDate + " a las "+ reservationInitialDateOutputHourList[0]+":"+reservationInitialDateOutputHourList[1];
+
+
+              final reservationEndDateOutputComplete = reservations[position].endDate.toString().split(".")[0];
+              final  String reservationEndDateOutputDate = reservationEndDateOutputComplete.split("T")[0];
+              final String reservationEndDateOutputHourComplete = reservationEndDateOutputComplete.split("T")[1];
+              final reservationEndDateOutputHourList = reservationEndDateOutputHourComplete.split(":");
+              final String reservationEndDateOutputToUser = reservationEndDateOutputDate + " a las "+ reservationEndDateOutputHourList[0]+":"+reservationEndDateOutputHourList[1];
+
 
                 return Card(
 
@@ -71,7 +84,7 @@ class _MyReservationsState extends State<MyReservations> {
                   child: Row(
                     children: [
                       Container(
-                        width: 150,
+                        width: 130,
                         height: 180,
                         child: Image.network(office.image,
                                   fit: BoxFit.fitHeight )
@@ -92,7 +105,7 @@ class _MyReservationsState extends State<MyReservations> {
                                   textAlign: TextAlign.left
                               ),
                               SizedBox(height: 13,),
-                              Text("Fecha inicio: "+reservations[position].initialDate.split("T")[0],
+                              Text("Inicio: "+reservationInitialDateOutputToUser,
                               style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.grey,
@@ -101,7 +114,7 @@ class _MyReservationsState extends State<MyReservations> {
                                   textAlign: TextAlign.left
                               ),
                               SizedBox(height: 8,),
-                              Text("Fecha fin: "+reservations[position].endDate.split("T")[0],
+                              Text("Fin: "+reservationEndDateOutputToUser,
                                 style: TextStyle(
                                     fontSize: 13,
                                     color: Colors.grey,
@@ -130,6 +143,16 @@ class _MyReservationsState extends State<MyReservations> {
             }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+          elevation: 0,
+          highlightElevation: 0,
+          child: Icon(
+            Icons.add,
+            ),
+          backgroundColor: Colors.indigo,
+          onPressed: () {
+            Navigator.of(context).pushNamed('/create_reservation');
+          }),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/create_reservation.dart';
 import 'package:flutter_offirent/login.dart';
 import 'package:flutter_offirent/my_reservations.dart';
 import 'package:flutter_offirent/office.dart';
@@ -42,6 +43,8 @@ class RouteGenerator {
       case '/register':
         return MaterialPageRoute(builder: (_) => RegisterPage());
 
+      case '/create_reservation':
+        return MaterialPageRoute(builder: (_) => ReservationPage());
 
       default:
         return _errorRoute();

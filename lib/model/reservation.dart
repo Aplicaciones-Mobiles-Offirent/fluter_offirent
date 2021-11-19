@@ -1,21 +1,28 @@
-class Reservation{
-  int id=0;
-  bool status = false;
-  String initialDate="DateTime.utc(2000,11,15)";
-  String endDate="DateTime.utc(2000,11,16)";
-  int officeId=0;
+import 'dart:convert';
 
-  Reservation(this.id,
-              this.initialDate,
-              this.endDate,
-              this.status,
-              this.officeId);
+Reservation reservationFromJson(String str) => Reservation.fromJson(json.decode(str));
 
-  Reservation.fromJson(Map<String, dynamic> parsedJson) {
-    this.id = parsedJson['id'];
-    this.status = parsedJson['status'];
-    this.initialDate = parsedJson['initialDate'];
-    this.endDate = parsedJson['endDate'];
-    this.officeId = parsedJson['officeId'];
+class Reservation {
+  int id;
+  bool status;
+  int officeId;
+  String initialDate;
+  String endDate;
+
+  Reservation(
+      { required this.id,
+        required this.status,
+        required this.officeId,
+        required this.initialDate,
+        required this.endDate}
+      );
+
+  factory Reservation.fromJson(Map<String, dynamic> json){
+    return Reservation(
+        id: json['id'],
+        status: json['status'],
+        officeId: json['officeId'],
+        initialDate: json['initialDate'],
+        endDate: json['endDate']);
   }
 }

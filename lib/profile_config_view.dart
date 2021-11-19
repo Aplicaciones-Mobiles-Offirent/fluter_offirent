@@ -17,11 +17,10 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.indigo,
-              elevation: 1,
+              elevation: 0,
               /*leading: IconButton(
                 icon: const Icon(
                   Icons.arrow_back,
@@ -31,7 +30,7 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
               ),*/
               title: Text("Edit Profile",
                 style: TextStyle(
-                fontSize: 25,
+                //fontSize: 25,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,),
               ),
@@ -117,8 +116,7 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
                 ),
               ),
             )
-        )
-    );
+        );
   }
 
   Widget buildTextField(String labelText, String placeholder) {
