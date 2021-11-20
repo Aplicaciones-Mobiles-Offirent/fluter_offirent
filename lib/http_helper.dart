@@ -116,8 +116,8 @@ Future<Account> getAccountWithoutClass(String email) async {
   if(response.statusCode == HttpStatus.ok) {
     /*final jsonResponse = json.decode(response.body);
     Account account = jsonResponse.map((i) => Account.fromJson(i)).ToAccount();*/
-    return accountFromJson(response.body);
     print(response.statusCode);
+    return accountFromJson(response.body);
     //print(email);
     //return account;
   } else {
@@ -125,4 +125,20 @@ Future<Account> getAccountWithoutClass(String email) async {
     print(email);
     return null!;
   }
+}
+
+Future<Office> getOfficeWithoutClass(int officeId) async {
+  final String officeQuery = urlBase + 'offices/$officeId';
+  http.Response response = await http.get(Uri.parse(officeQuery));
+
+  if(response.statusCode == HttpStatus.ok) {
+    final jsonResponse = json.decode(response.body);
+    Office office = jsonResponse.map((i) => Office.fromJson(i));
+    print(response.statusCode);
+    return office;
+  } else {
+    print(response.statusCode);
+    return null!;
+  }
+
 }

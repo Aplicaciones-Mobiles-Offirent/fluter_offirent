@@ -14,6 +14,8 @@ import 'package:flutter_offirent/register.dart';
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
 
+    final args = settings.arguments;
+
     switch(settings.name) {
 
       //case '/':
@@ -30,8 +32,6 @@ class RouteGenerator {
       case '/office_page':
         return MaterialPageRoute(builder: (_) => OfficePage());
 
-      case '/office_detail':
-        return MaterialPageRoute(builder: (_) => OfficeDetail());
 
 
       case '/provider_offices':

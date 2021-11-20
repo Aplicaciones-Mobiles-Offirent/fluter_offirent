@@ -3,19 +3,24 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class OfficeDetail extends StatelessWidget {
 
+  final office;
+  final username;
+
+  OfficeDetail(this.office, this.username);
+
   @override
   Widget build(BuildContext context) {
 
       return Scaffold(
         appBar: AppBar(
           title:  Text("Información de la oficina",
-              style: TextStyle(color: Colors.black)),
+              style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.indigo,
         ),
         body: ListView(
           children: <Widget>[
             Container(
-              child: const Text("OFICINA",
+              child:  Text(office["name"],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -24,70 +29,65 @@ class OfficeDetail extends StatelessWidget {
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: Image.network("https://cdn.pixabay.com/photo/2015/05/15/14/22/conference-room-768441_960_720.jpg",
+              child: Image.network(office["image"],
                   fit: BoxFit.cover),
+
+
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              child:  Text(office["description"],
                 textAlign: TextAlign.justify,
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 15.0,
                 ),
               ),
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: const Text("Correo: offi@hotmail.com",
+              child: Text("Direccion: ${office["address"]}",
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 15.0,
                 ),
               ),
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: const Text("Telefono: +51 985 265 412",
+              child:  Text("Aforo: ${office["capacity"]} personas",
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 15.0,
                 ),
               ),
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: MaterialButton(
-                  color: Colors.tealAccent,
-                  child: const Text("Alquilar local S/.390",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),),
-                  onPressed: (){}),
+              child:  Text("Precio: S/.${office["price"]}0 ",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 15.0,
+                ),
+              ),
               margin: EdgeInsets.all(10.0),
             ),
-            TextButton.icon(
-                icon: Icon(Icons.favorite),
-                label: const Text("Agregar a favoritos",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),),
-                onPressed: (){}),
+
             Container(
-              child: const Text("Reseña",
+              child: const Text("Calificacion: ",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontSize: 23.0,
+                  fontSize: 15.0,
                 ),
               ),
               margin: EdgeInsets.all(10.0),
             ),
             Container(
               child: RatingBar.builder(
-                initialRating: 3,
+                initialRating: office["score"],
                 minRating: 0.5,
                 itemCount: 5,
                 allowHalfRating: true,
-                itemSize: 30,
+                itemSize: 20,
                 itemBuilder: (context, _) => Icon(
                   Icons.star,
                   color: Colors.amber,
@@ -99,32 +99,28 @@ class OfficeDetail extends StatelessWidget {
               alignment: Alignment.center,
             ),
             Container(
-              child: const TextField(
-                decoration: InputDecoration(
-                  hintText: "Escribe una reseña",
-                  labelStyle: TextStyle(
-                    fontSize: 20.0,
-                  ),
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.multiline,
-                maxLines: 5,
-              ),
-              margin: EdgeInsets.all(10.0),
-            ),
-            Container(
-              width: 50,
-              child: TextButton(
-                  child: const Text("Publicar reseña",
+              child: MaterialButton(
+                  color: Colors.tealAccent,
+                  child: const Text("Reservar",
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 15.0,
                     ),),
-                  onPressed: (){}),
+                  onPressed: (){
+
+                  }),
               margin: EdgeInsets.all(10.0),
             ),
+            TextButton.icon(
+                icon: Icon(Icons.favorite),
+                label: const Text("Agregar a favoritos",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                  ),),
+                onPressed: (){}),
           ],
         ),
       );
 
   }
+
 }

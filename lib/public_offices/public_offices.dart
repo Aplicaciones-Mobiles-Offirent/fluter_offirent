@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/model/office.dart';
+import 'package:flutter_offirent/office_detail.dart';
 import 'package:flutter_offirent/widgets/drawer_widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -17,6 +19,8 @@ class _PublicOfficesState extends State<PublicOffices> {
 
   String url = "https://api-e404.herokuapp.com/api/offices";
   String username = "";
+
+  late Office office;
 
 
   List data = [];
@@ -36,6 +40,8 @@ class _PublicOfficesState extends State<PublicOffices> {
     print('Floor: ' + data[0]["floor"].toString());
     return response.body;
   }
+
+
 
   void getCred() async {
     SharedPreferences userPrefs = await SharedPreferences.getInstance();
@@ -85,7 +91,10 @@ class _PublicOfficesState extends State<PublicOffices> {
           ),
         ),
               onTap: () {
-                Navigator.of(context).pushNamed('/office_detail');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) => OfficeDetail(data[i],username)));
+
               },
             ),
       );
