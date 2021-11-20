@@ -62,7 +62,7 @@ class _MyReservationsState extends State<MyReservations> {
       body: ListView.builder(
           itemCount: (this.myReservationsCount == null) ? 0: this.myReservationsCount,
           itemBuilder: (BuildContext context, int position) {
-            if(myReservationsCount == null)  {
+            if(myReservationsCount <= 0)  {
               return Card(
                 color: Colors.white,
                 elevation: 4.0,

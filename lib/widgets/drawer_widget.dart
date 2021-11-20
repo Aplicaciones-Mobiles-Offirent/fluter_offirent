@@ -76,7 +76,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                 backgroundImage: NetworkImage(
                                     "https://img2.freepng.es/20180331/eow/kisspng-computer-icons-user-clip-art-user-5abf13db298934.2968784715224718991702.jpg")
                             ),
-                            SizedBox(width: 20.0,),
+                            SizedBox(width: 12.0,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
