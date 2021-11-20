@@ -12,6 +12,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _passwordVisible = false;
   bool _cPasswordVisible = false;
 
+
   TextEditingController _password = TextEditingController();
   TextEditingController _confirmPassword = TextEditingController();
 

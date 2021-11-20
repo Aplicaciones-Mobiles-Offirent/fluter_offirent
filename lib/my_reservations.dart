@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offirent/http_helper.dart';
 import 'package:flutter_offirent/model/office.dart';
 import 'package:flutter_offirent/widgets/drawer_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class MyReservations extends StatefulWidget {
@@ -18,24 +19,36 @@ class _MyReservationsState extends State<MyReservations> {
   late HttpHelper helper;
   int myReservationsCount=0;
   late List reservations;
-  late String email = "flavio.s.m@gmail.com";
+  late String email = "flavio1.s.m@gmail.com";
   late List offices;
 
+
   Future initialize() async{
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    email = userPrefs.getString("email")!;
     reservations = await helper.getReservationsByEmail(email);
     offices = await helper.getAllOffices();
+
     setState(() {
+      email = email;
       myReservationsCount = reservations.length;
       reservations = reservations;
       offices = offices;
     });
   }
 
+  void getCred() async {
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = userPrefs.getString("email")!;
+    });
+  }
 
   @override
   void initState() {
     helper = HttpHelper();
     initialize();
+    getCred();
     super.initState();
   }
 
@@ -45,7 +58,7 @@ class _MyReservationsState extends State<MyReservations> {
       appBar: AppBar(
         title: Text("Mis Reservaciones"),
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(user: email,),
       body: ListView.builder(
           itemCount: (this.myReservationsCount == null) ? 0: this.myReservationsCount,
           itemBuilder: (BuildContext context, int position) {

@@ -1,5 +1,7 @@
 
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_offirent/model/office.dart';
 import 'package:flutter_offirent/model/reservation.dart';
 import 'package:http/http.dart' as http;
@@ -8,8 +10,29 @@ import 'dart:convert';
 
 import 'model/account.dart';
 
+const String urlBase = 'https://api-e404.herokuapp.com/api/';
 class HttpHelper {
-  final String urlBase = 'https://api-e404.herokuapp.com/api/';
+
+
+
+  Future<http.Response> loginFromAPI(TextEditingController email, TextEditingController password) async{
+
+      final String loginQuery = urlBase + "accounts/authenticate";
+      http.Response response = await http.post(Uri.parse(loginQuery),
+          body:{
+            "username": email.text,
+            "password": password.text
+          } );
+
+      return response;
+
+    }
+
+
+
+
+
+
 
   Future<List> getAllOffices() async {
     final String officesQuery = urlBase+'offices';
@@ -35,6 +58,8 @@ class HttpHelper {
       List myOffices = jsonResponse.map((i) => Office.fromJson(i)).toList();
       return myOffices;
     } else {
+      print(response.statusCode);
+      print(emailProvider);
       return null!;
     }
 
@@ -82,4 +107,21 @@ class HttpHelper {
     }
   }
 
+}
+
+Future<Account> getAccountWithoutClass(String email) async {
+  final String myAccountQuery = urlBase +'accounts/email/'+email;
+  http.Response response = await http.get(Uri.parse(myAccountQuery));
+
+  if(response.statusCode == HttpStatus.ok) {
+    final jsonResponse = json.decode(response.body);
+    Account account = jsonResponse.map((i) => Account.fromJson(i)).ToAccount();
+    print(response.statusCode);
+    print(email);
+    return account;
+  } else {
+    print(response.statusCode);
+    print(email);
+    return null!;
+  }
 }

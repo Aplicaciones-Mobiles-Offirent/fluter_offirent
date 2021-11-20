@@ -19,7 +19,7 @@ class Account {
           this.phoneNumber,
           this.isPremium);
 
-  Account.fromJson(Map<String, dynamic> parseJson){
+   Account.fromJson(Map<String, dynamic> parseJson){
     this.id = parseJson['id'];
     this.email = parseJson['email'];
     this.password = parseJson['password'];
@@ -30,4 +30,6 @@ class Account {
     this.phoneNumber = parseJson['phone'];
     this.isPremium = parseJson['premium'];
   }
+
+
 }

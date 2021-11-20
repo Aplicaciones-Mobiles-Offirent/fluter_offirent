@@ -4,6 +4,8 @@ import 'package:flutter_offirent/widgets/drawer_widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class ProviderOffices extends StatefulWidget {
   const ProviderOffices({Key? key}) : super(key: key);
@@ -18,24 +20,35 @@ class _ProviderOfficesState extends State<ProviderOffices> {
   late HttpHelper helper;
   int myOfficesCount = 0;
   late List myOffices;
-  late String emailProvider ="flavio.s.m@gmail.com";
+  String emailProvider="";
+
 
   Icon visibleIcon = Icon(Icons.search);
 
-  Future initialize(emailProvider) async {
+  Future initialize() async {
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    emailProvider = userPrefs.getString("email")!;
     myOffices = await helper.getMyOffices(emailProvider);
+    print(emailProvider);
     setState(() {
+      emailProvider = emailProvider;
       myOfficesCount = myOffices.length;
       myOffices = myOffices;
     });
   }
 
-
+  void getCred() async {    //funcion como modelo, si se quita no hay diferencia
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    setState(() {
+      emailProvider = userPrefs.getString("email")!;
+    });
+  }
 
   @override
   void initState() {
+    getCred();
     helper = HttpHelper();
-    initialize(emailProvider);
+    initialize();
     super.initState();
   }
 
@@ -45,7 +58,7 @@ class _ProviderOfficesState extends State<ProviderOffices> {
       appBar: AppBar(
         title: Text("Mis Oficinas"),
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(user: emailProvider),
       body: ListView.builder(
           itemCount: (this.myOfficesCount == null) ? 0: this.myOfficesCount,
           itemBuilder: (BuildContext context, int position) {

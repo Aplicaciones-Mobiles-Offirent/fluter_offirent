@@ -4,6 +4,8 @@ import 'package:flutter_offirent/widgets/drawer_widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class PublicOffices extends StatefulWidget {
 
   @override
@@ -14,6 +16,8 @@ class _PublicOfficesState extends State<PublicOffices> {
 
 
   String url = "https://api-e404.herokuapp.com/api/offices";
+  String username = "";
+
 
   List data = [];
 
@@ -33,10 +37,20 @@ class _PublicOfficesState extends State<PublicOffices> {
     return response.body;
   }
 
+  void getCred() async {
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = userPrefs.getString("email")!;
+      username = username;
+    });
+
+  }
 
   @override
   void initState() {
-    this.makeRequest();
+    super.initState();
+    makeRequest();
+    getCred();
   }
 
   @override
@@ -106,7 +120,7 @@ class _PublicOfficesState extends State<PublicOffices> {
           )
         ],
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(user: username,),
       body: GridView.count(
           crossAxisCount: 2,
           padding: const EdgeInsets.all(16.0),

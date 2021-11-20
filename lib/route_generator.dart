@@ -12,7 +12,7 @@ import 'package:flutter_offirent/register.dart';
 
 
 class RouteGenerator {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
 
     switch(settings.name) {
 
@@ -46,8 +46,7 @@ class RouteGenerator {
       case '/create_reservation':
         return MaterialPageRoute(builder: (_) => ReservationPage());
 
-      default:
-        return _errorRoute();
+
     }
 
   }
