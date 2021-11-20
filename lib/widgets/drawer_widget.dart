@@ -12,7 +12,7 @@ class DrawerWidget extends StatefulWidget {
   final String user;
 
 
-  const DrawerWidget({
+   const DrawerWidget({
     Key? key,
     required this.user
 
@@ -26,24 +26,27 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   String username="";
 
-  Future<void> getCred() async {
+   void getCred(String user) async {
     SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    user = userPrefs.getString("email")!;
     setState(() {
-       username = userPrefs.getString("email")!;
-       username = username;
+
+       username = user;
     });
 
   }
 
 
+
   @override
-  void initState() {
+  void initState() { //no se utiliza como tal, pero es una forma de instanciar sin futurebuilder
     super.initState();
-    getCred();
+    getCred(username);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Drawer(
       child: Container(
         color: Colors.indigo,
@@ -51,47 +54,57 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           padding: EdgeInsets.symmetric(horizontal: 20),
           children: [
             FutureBuilder<Account>(
-
               future: getAccountWithoutClass(widget.user),
               builder: (context, snapshot){
 
-                if (snapshot.hasData) {
-                  // return something
-                  return Text("${snapshot.data!.email}");
-                } else if (snapshot.hasError) {
-                  // Manage error
-                  print(snapshot.error.toString());
-                  return Text(snapshot.error.toString());
-                } else {
-                  // return something for the user to wait
-                }
+                  if (snapshot.hasError) {
+                    // Manage error
+                    print(snapshot.error.toString());
+                    return Text(snapshot.error.toString());
 
 
-                return DrawerHeader(
-                    decoration: BoxDecoration(
-                        color: Colors.indigo
-                    ),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                            radius:40,
-                            backgroundImage: NetworkImage("https://img2.freepng.es/20180331/eow/kisspng-computer-icons-user-clip-art-user-5abf13db298934.2968784715224718991702.jpg")
+                  }else if( snapshot.hasData) {
+                    // return something for the user to wait
+                    return DrawerHeader(
+                        decoration: BoxDecoration(
+                            color: Colors.indigo
                         ),
-                        SizedBox(width: 20.0,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
                           children: [
-                            SizedBox(height: 45.0,),
-                            Text("Usuario",
-                              style: TextStyle(fontSize: 20),),
-                            SizedBox(height: 4.0,),
-                            Text('Correo',
-                              style: TextStyle(fontSize: 13),),
+                            CircleAvatar(
+                                radius: 40,
+                                backgroundImage: NetworkImage(
+                                    "https://img2.freepng.es/20180331/eow/kisspng-computer-icons-user-clip-art-user-5abf13db298934.2968784715224718991702.jpg")
+                            ),
+                            SizedBox(width: 20.0,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 45.0,),
+                                Text(snapshot.data!.firstName,
+                                  style: TextStyle(fontSize: 20),),
+                                SizedBox(height: 4.0,),
+                                Text(snapshot.data!.email,
+                                  style: TextStyle(fontSize: 13),),
+                              ],
+                            )
                           ],
                         )
-                      ],
-                    )
-                );
+                    );
+                  }
+
+
+                else {
+                    return DrawerHeader(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 80.0,),
+                            CircularProgressIndicator(),
+
+                          ],
+                        )
+                    );
+                  }
               }
 
             ),

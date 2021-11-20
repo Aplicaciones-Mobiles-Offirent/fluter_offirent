@@ -1,35 +1,45 @@
-class Account {
-  int id=0;
-  String email="";
-  String password="";
-  String identification="";
-  int accType=0;
-  String firstName="";
-  String lastName="";
-  String phoneNumber="";
-  bool isPremium=true;
-  
-  Account(this.id,
-          this.email,
-          this.password,
-          this.identification,
-          this.accType,
-          this.firstName,
-          this.lastName,
-          this.phoneNumber,
-          this.isPremium);
 
-   Account.fromJson(Map<String, dynamic> parseJson){
-    this.id = parseJson['id'];
-    this.email = parseJson['email'];
-    this.password = parseJson['password'];
-    this.identification = parseJson['identification'];
-    this.accType = parseJson['accType'];
-    this.firstName = parseJson['firstName'];
-    this.lastName = parseJson['lastName'];
-    this.phoneNumber = parseJson['phone'];
-    this.isPremium = parseJson['premium'];
-  }
+
+
+import 'dart:convert';
+
+Account accountFromJson(String str) => Account.fromJson(json.decode(str));
+
+class Account {
+  int id;
+  String email;
+  String password;
+  String identification;
+  int accType;
+  String firstName;
+  String lastName;
+  int phoneNumber;
+  bool isPremium;
+  
+  Account(
+      {required this.id,
+      required this.email,
+      required this.password,
+      required this.identification,
+      required this.accType,
+      required this.firstName,
+      required this.lastName,
+      required this.phoneNumber,
+      required this.isPremium}
+    );
+
+   factory Account.fromJson(Map<String, dynamic> parsedJson){
+     return Account(
+         id: parsedJson['id'],
+         email: parsedJson['email'],
+         password: parsedJson['password'],
+         identification: parsedJson['identification'],
+         accType: parsedJson['accType'],
+         firstName: parsedJson['firstName'],
+         lastName: parsedJson['lastName'],
+         phoneNumber: parsedJson['phone'],
+         isPremium: parsedJson['premium']);
+   }
 
 
 }

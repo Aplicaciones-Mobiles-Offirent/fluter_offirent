@@ -58,7 +58,7 @@ class _ProviderOfficesState extends State<ProviderOffices> {
       appBar: AppBar(
         title: Text("Mis Oficinas"),
       ),
-      drawer: DrawerWidget(user: emailProvider),
+      drawer: DrawerWidget(user: emailProvider,),
       body: ListView.builder(
           itemCount: (this.myOfficesCount == null) ? 0: this.myOfficesCount,
           itemBuilder: (BuildContext context, int position) {

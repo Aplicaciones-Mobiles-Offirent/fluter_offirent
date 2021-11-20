@@ -114,11 +114,12 @@ Future<Account> getAccountWithoutClass(String email) async {
   http.Response response = await http.get(Uri.parse(myAccountQuery));
 
   if(response.statusCode == HttpStatus.ok) {
-    final jsonResponse = json.decode(response.body);
-    Account account = jsonResponse.map((i) => Account.fromJson(i)).ToAccount();
+    /*final jsonResponse = json.decode(response.body);
+    Account account = jsonResponse.map((i) => Account.fromJson(i)).ToAccount();*/
+    return accountFromJson(response.body);
     print(response.statusCode);
-    print(email);
-    return account;
+    //print(email);
+    //return account;
   } else {
     print(response.statusCode);
     print(email);
