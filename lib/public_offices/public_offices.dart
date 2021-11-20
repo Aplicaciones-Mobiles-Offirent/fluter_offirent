@@ -74,7 +74,8 @@ class _PublicOfficesState extends State<PublicOffices> {
                   aspectRatio: 18.0 / 11.0,
                   child: FadeInImage(
                       placeholder: AssetImage('lib/assets/loading.gif'),
-                      image: NetworkImage(data[i]["image"]))
+                      image: NetworkImage(data[i]["image"]),
+                      fit: BoxFit.fitWidth,)
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
