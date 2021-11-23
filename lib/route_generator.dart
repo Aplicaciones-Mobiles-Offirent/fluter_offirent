@@ -44,8 +44,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => RegisterPage());
 
       case '/create_reservation':
-        return MaterialPageRoute(builder: (_) => ReservationPage());
-
+        if(args is int) {
+          return MaterialPageRoute(
+              builder: (_) => ReservationPage(officeId: args,));
+        }else
+          {return _errorRoute();}
 
     }
 

@@ -106,7 +106,8 @@ class OfficeDetail extends StatelessWidget {
                       fontSize: 15.0,
                     ),),
                   onPressed: (){
-
+                    Navigator.of(context).pushNamed('/create_reservation',
+                    arguments: office["id"]);
                   }),
               margin: EdgeInsets.all(10.0),
             ),
