@@ -146,9 +146,16 @@ class _MyReservationsState extends State<MyReservations> {
                       Container(
                         width: 130,
                         height: 180,
-                        child: Image.network(office.image,
-                                  fit: BoxFit.fitHeight )
-                      ),
+                        child: AspectRatio(
+                            aspectRatio: 130.0 / 180.0,
+                            child: FadeInImage(
+                                placeholder: AssetImage('lib/assets/loading.gif'),
+                                image: NetworkImage(office.image),
+                                    fit: BoxFit.fitHeight ),
+                          ),
+                      )/*Image.network(office.image,
+                                  fit: BoxFit.fitHeight )*/
+                      ,
                       Padding(
                           padding: EdgeInsets.all(10),
                           child: Column(
