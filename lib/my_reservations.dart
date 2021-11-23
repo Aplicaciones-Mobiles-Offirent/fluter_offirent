@@ -1,10 +1,11 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_offirent/http_helper.dart';
 import 'package:flutter_offirent/model/office.dart';
 import 'package:flutter_offirent/widgets/drawer_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'model/account.dart';
 
 
 class MyReservations extends StatefulWidget {
@@ -21,16 +22,61 @@ class _MyReservationsState extends State<MyReservations> {
   late List reservations;
   late String email = "flavio1.s.m@gmail.com";
   late List offices;
+  late Account account;
+
+
+  confirmDeleteDialog(int accountId, int reservationId){
+    return showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        title: Text("Cancelar Reserva"),
+        content: Text("¿Estas seguro de cancelar su Reserva?"),
+        actions: [
+          TextButton(
+              onPressed: (){
+                //Navigator.of(context).pop();
+                deleteReservation(accountId, reservationId);
+                Navigator.of(context).pushNamedAndRemoveUntil('/my_reservations', (Route<dynamic> route) => false);
+              },
+              child: Text("Si")),
+          TextButton(
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+              child: Text("No")),
+
+        ],
+      );
+    },);
+  }
+
+  deleteReservation(int accountId, int reservationId) {
+    helper.deleteReservationByAccountIdAndReservationId(accountId, reservationId).then((response) {
+
+      if(response.statusCode == 200){
+        print("Se eliminó correctamente");
+        print("ID de Reserva eliminada: $reservationId");
+
+      }
+      else{
+        print(accountId);
+        print(reservationId);
+        print(response.statusCode);
+      }
+    }).catchError((error){
+      print("error: $error");});
+  }
 
 
   Future initialize() async{
     SharedPreferences userPrefs = await SharedPreferences.getInstance();
     email = userPrefs.getString("email")!;
+    account = await helper.getAccount(email);
     reservations = await helper.getReservationsByEmail(email);
     offices = await helper.getAllOffices();
 
     setState(() {
       email = email;
+      account = account;
       myReservationsCount = reservations.length;
       reservations = reservations;
       offices = offices;
@@ -39,6 +85,7 @@ class _MyReservationsState extends State<MyReservations> {
 
   void getCred() async {
     SharedPreferences userPrefs = await SharedPreferences.getInstance();
+
     setState(() {
       email = userPrefs.getString("email")!;
     });
@@ -60,9 +107,9 @@ class _MyReservationsState extends State<MyReservations> {
       ),
       drawer: DrawerWidget(user: email,),
       body: ListView.builder(
-          itemCount: (this.myReservationsCount == null) ? 0: this.myReservationsCount,
+          itemCount: (myReservationsCount == null) ? 0: myReservationsCount,
           itemBuilder: (BuildContext context, int position) {
-            if(myReservationsCount <= 0)  {
+            if(myReservationsCount == 0)  {
               return Card(
                 color: Colors.white,
                 elevation: 4.0,
@@ -139,8 +186,10 @@ class _MyReservationsState extends State<MyReservations> {
 
                                 children:[
                                   TextButton(
-                                    onPressed: () {},
-                                    child: Text("Eliminar")),
+                                    onPressed: () {
+                                      confirmDeleteDialog(account.id, reservations[position].id);
+                                    },
+                                    child: Text("Cancelar")),
                                   ElevatedButton(
                                       onPressed: (){},
                                       child: Text("Ver"))]
@@ -156,16 +205,7 @@ class _MyReservationsState extends State<MyReservations> {
             }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-          elevation: 0,
-          highlightElevation: 0,
-          child: Icon(
-            Icons.add,
-            ),
-          backgroundColor: Colors.indigo,
-          onPressed: () {
-            Navigator.of(context).pushNamed('/create_reservation');
-          }),
+
     );
   }
 }

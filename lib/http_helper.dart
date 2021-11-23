@@ -72,7 +72,7 @@ class HttpHelper {
 
     if(response.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(response.body);
-      Account account = jsonResponse.map((i) => Account.fromJson(i));
+      Account account = Account.fromJson(jsonResponse);
       return account;
     } else {
       return null!;
@@ -105,6 +105,14 @@ class HttpHelper {
     } else {
       return null!;
     }
+  }
+
+  Future<http.Response> deleteReservationByAccountIdAndReservationId(int accountId, int reservationId) async{
+    final String myReservationQuery = urlBase + 'accounts/$accountId/reservations/$reservationId';
+    http.Response response = await http.delete(Uri.parse(myReservationQuery));
+
+    return response;
+
   }
 
 }

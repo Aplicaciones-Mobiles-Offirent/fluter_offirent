@@ -125,7 +125,7 @@ class _ReservationPageState extends State<ReservationPage> {
               child: Text("Ver Mis Reservas")),
           TextButton(
               onPressed: (){
-                Navigator.popUntil(context, ModalRoute.withName('/public_offices'));
+                Navigator.of(context).pushNamedAndRemoveUntil('/public_offices', (Route<dynamic> route) => false);
               },
               child: Text("Ok")),
 

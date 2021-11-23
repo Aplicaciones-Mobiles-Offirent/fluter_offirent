@@ -25,4 +25,6 @@ class Reservation {
         initialDate: json['initialDate'],
         endDate: json['endDate']);
   }
+
+
 }
