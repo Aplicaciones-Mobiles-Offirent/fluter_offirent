@@ -153,16 +153,39 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Cerrar sesión"),
-              onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.clear();
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+              onTap: ()  {
+                confirmSignOutDialog();
               },
             ),
           ],
         ),
       ),
     );
+  }
+  confirmSignOutDialog(){
+    return showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        title: Text("Cerrar Sesión"),
+        content: Text("¿Estas seguro de cerrar sesión?"),
+        actions: [
+          TextButton(
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.clear();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+                //Navigator.of(context).pop();
+                //deleteReservation(accountId, reservationId);
+              },
+              child: Text("Si")),
+          TextButton(
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+              child: Text("No")),
+
+        ],
+      );
+    },);
   }
 }
