@@ -57,6 +57,7 @@ class _ProviderOfficesState extends State<ProviderOffices> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Mis Oficinas"),
+        backgroundColor: Colors.indigo,
       ),
       drawer: DrawerWidget(user: emailProvider,),
       body: ListView.builder(
@@ -88,6 +89,13 @@ class _ProviderOfficesState extends State<ProviderOffices> {
             }
            }
           ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.indigo,
+        onPressed: (){
+          Navigator.of(context).pushReplacementNamed("/map_widget");
+        },
+      ),
     );
   }
 }

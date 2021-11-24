@@ -46,7 +46,7 @@ class _MyReservationsState extends State<MyReservations> {
 
         ],
       );
-    },);
+    }, barrierDismissible: false);
   }
 
   deleteReservation(int accountId, int reservationId) {
@@ -104,6 +104,7 @@ class _MyReservationsState extends State<MyReservations> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Mis Reservaciones"),
+        backgroundColor: Colors.indigo,
       ),
       drawer: DrawerWidget(user: email,),
       body: ListView.builder(
@@ -196,10 +197,16 @@ class _MyReservationsState extends State<MyReservations> {
                                     onPressed: () {
                                       confirmDeleteDialog(account.id, reservations[position].id);
                                     },
-                                    child: Text("Cancelar")),
+                                    child: Text("Cancelar",
+                                    style: TextStyle(
+                                      color: Colors.red
+                                    ),)),
                                   ElevatedButton(
                                       onPressed: (){},
-                                      child: Text("Ver"))]
+                                      child: Text("Ver"),
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.all<Color>(Colors.indigoAccent),
+                                      ),),]
 
                               ),
 
@@ -212,6 +219,7 @@ class _MyReservationsState extends State<MyReservations> {
             }
         },
       ),
+
 
     );
   }

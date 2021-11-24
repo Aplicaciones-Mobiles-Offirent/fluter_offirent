@@ -9,6 +9,7 @@ import 'package:flutter_offirent/provider_offices.dart';
 //import 'package:flutter_offirent/main.dart';
 import 'package:flutter_offirent/public_offices/public_offices.dart';
 import 'package:flutter_offirent/register.dart';
+import 'package:flutter_offirent/widgets/map_widget.dart';
 
 
 class RouteGenerator {
@@ -49,7 +50,8 @@ class RouteGenerator {
               builder: (_) => ReservationPage(officeId: args,));
         }else
           {return _errorRoute();}
-
+      case '/map_widget':
+        return MaterialPageRoute(builder: (_) => MapWidgets());
     }
 
   }
