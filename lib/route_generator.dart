@@ -11,6 +11,7 @@ import 'package:flutter_offirent/public_offices/public_offices.dart';
 import 'package:flutter_offirent/register.dart';
 
 
+
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
 
@@ -49,7 +50,6 @@ class RouteGenerator {
               builder: (_) => ReservationPage(officeId: args,));
         }else
           {return _errorRoute();}
-
     }
 
   }

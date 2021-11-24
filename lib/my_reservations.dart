@@ -46,7 +46,7 @@ class _MyReservationsState extends State<MyReservations> {
 
         ],
       );
-    },);
+    }, barrierDismissible: false);
   }
 
   deleteReservation(int accountId, int reservationId) {
@@ -206,7 +206,10 @@ class _MyReservationsState extends State<MyReservations> {
                                           backgroundColor:  MaterialStateProperty.all<Color>(Colors.indigo)
                                       ),
                                       onPressed: (){},
-                                      child: Text("Ver"),),]
+
+                                      child: Text("Ver"),
+                                      ),]
+
 
                               ),
 
@@ -219,6 +222,7 @@ class _MyReservationsState extends State<MyReservations> {
             }
         },
       ),
+
 
     );
   }

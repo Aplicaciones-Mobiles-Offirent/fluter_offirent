@@ -191,7 +191,9 @@ class _ReservationPageState extends State<ReservationPage> {
           body: SafeArea(
             child: ListView(
               shrinkWrap: true,
+
               padding: const EdgeInsets.only(top: 60),
+
               children: [
                   Row (
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +229,9 @@ class _ReservationPageState extends State<ReservationPage> {
                                   currentTime: DateTime.now(),
                                   locale: LocaleType.en);
                             },
+
                             child: const Text ('Escoger fecha inicial',
+
                                 style: TextStyle(
                                     fontSize: 13)
                             ),
@@ -311,12 +315,14 @@ class _ReservationPageState extends State<ReservationPage> {
                                   borderRadius: BorderRadius.circular(18.0),
                                 )
                             ),
+
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
                             backgroundColor:  MaterialStateProperty.all<Color>(Colors.tealAccent)
                           ),
                           child: const Text ('Crear Reserva',
                               style: TextStyle(
                                   fontSize: 18,
+
                                   color: Colors.black)
                           ),
                         )
