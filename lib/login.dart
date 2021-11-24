@@ -54,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             SingleChildScrollView(
               child: Column(
                 children: <Widget>[
+                  SizedBox(height: 60,),
                   Image(
                       image: AssetImage("lib/assets/offi-rent.png"),
                       fit: BoxFit.cover,
@@ -61,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 185,
                     ),
                   Padding(
-                      padding: EdgeInsets.all(10)
+                      padding: EdgeInsets.all(20)
                       ),
                   Text(
                     "Inicia sesión",

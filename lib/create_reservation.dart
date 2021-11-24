@@ -185,18 +185,20 @@ class _ReservationPageState extends State<ReservationPage> {
     return  Scaffold(
           appBar: AppBar(
             title: Text("Hacer una Reservacion"),
+            backgroundColor: Colors.indigo,
+
           ),
           body: SafeArea(
             child: ListView(
               shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 75),
+              padding: const EdgeInsets.only(top: 60),
               children: [
                   Row (
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Make a Reservation",
+                      Text("Elige un rango de fechas",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 28,
                         color: Colors.indigoAccent,
                         fontWeight: FontWeight.bold,
                       ),)
@@ -225,7 +227,7 @@ class _ReservationPageState extends State<ReservationPage> {
                                   currentTime: DateTime.now(),
                                   locale: LocaleType.en);
                             },
-                            child: const Text ('Select Start Date',
+                            child: const Text ('Escoger fecha inicial',
                                 style: TextStyle(
                                     fontSize: 13)
                             ),
@@ -269,7 +271,7 @@ class _ReservationPageState extends State<ReservationPage> {
                                 currentTime: DateTime.now(),
                                 locale: LocaleType.en);
                           },
-                          child: const Text ('Select End Date',
+                          child: const Text ('Escoger fecha final',
                               style: TextStyle(
                                   fontSize: 13)
                           ),
@@ -293,7 +295,7 @@ class _ReservationPageState extends State<ReservationPage> {
                       ],
                     ),
                 ),
-                Padding(padding: const EdgeInsets.only(top: 16),
+                Padding(padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                     child: SizedBox(
                         width: 1,
                         child: ElevatedButton(
@@ -310,11 +312,12 @@ class _ReservationPageState extends State<ReservationPage> {
                                 )
                             ),
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
+                            backgroundColor:  MaterialStateProperty.all<Color>(Colors.tealAccent)
                           ),
-                          child: const Text ('Create Reservation',
+                          child: const Text ('Crear Reserva',
                               style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.white)
+                                  color: Colors.black)
                           ),
                         )
                     ),

@@ -57,6 +57,7 @@ class _ProviderOfficesState extends State<ProviderOffices> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Mis Oficinas"),
+        backgroundColor: Colors.indigo,
       ),
       drawer: DrawerWidget(user: emailProvider,),
       body: ListView.builder(

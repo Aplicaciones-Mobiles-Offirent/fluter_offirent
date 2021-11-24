@@ -103,7 +103,8 @@ class _MyReservationsState extends State<MyReservations> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mis Reservaciones"),
+        title: Text("Mis Reservas"),
+        backgroundColor: Colors.indigo,
       ),
       drawer: DrawerWidget(user: email,),
       body: ListView.builder(
@@ -196,10 +197,16 @@ class _MyReservationsState extends State<MyReservations> {
                                     onPressed: () {
                                       confirmDeleteDialog(account.id, reservations[position].id);
                                     },
-                                    child: Text("Cancelar")),
+                                    child: Text("Cancelar",
+                                    style: TextStyle(
+                                      color: Colors.red
+                                    ),)),
                                   ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:  MaterialStateProperty.all<Color>(Colors.indigo)
+                                      ),
                                       onPressed: (){},
-                                      child: Text("Ver"))]
+                                      child: Text("Ver"),),]
 
                               ),
 
