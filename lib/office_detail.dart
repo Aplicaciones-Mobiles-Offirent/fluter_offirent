@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'db/favorites_database.dart';
+import 'model/office.dart';
 
 class OfficeDetail extends StatelessWidget {
 
@@ -117,11 +121,29 @@ class OfficeDetail extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15.0,
                   ),),
-                onPressed: (){}),
+                onPressed: () => saveFavorite()
+            )
           ],
         ),
       );
 
   }
 
+  saveFavorite() async {
+    await DatabaseHelper.instance.add(
+      Office(office["id"],
+        office["address"],
+        office["name"],
+        office["image"],
+        office["floor"],
+        office["capacity"],
+        office["allowResource"],
+        office["score"],
+        office["description"],
+        office["price"],
+        office["status"],
+        office["comment"],)
+    );
+    print("Favorite with id ${office["id"]} saved");
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offirent/create_reservation.dart';
+import 'package:flutter_offirent/favorites_view.dart';
 import 'package:flutter_offirent/login.dart';
 import 'package:flutter_offirent/my_reservations.dart';
 import 'package:flutter_offirent/office.dart';
@@ -33,7 +34,8 @@ class RouteGenerator {
       case '/office_page':
         return MaterialPageRoute(builder: (_) => OfficePage());
 
-
+      case '/favorite_offices':
+        return MaterialPageRoute(builder: (_) => FavoritesPage());
 
       case '/provider_offices':
         return MaterialPageRoute(builder: (_) => ProviderOffices());

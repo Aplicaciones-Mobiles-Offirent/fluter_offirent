@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_offirent/db/favorites_database.dart';
+import 'package:flutter_offirent/widgets/drawer_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(FavoritesPage());
-}
 
 class FavoritesPage extends StatefulWidget {
 
@@ -13,40 +14,84 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage> {
 
-  List names = [
-    ["Office Miraflores", "fake street 123", 40],
-    ["Office San Isidro", "fake street 564", 150],
-    ["Office Monterrico", "fake street 276", 79],
-  ];
+  String emailProvider="";
+  List favorites = [];
+
+  Future initialize() async {
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    emailProvider = userPrefs.getString("email")!;
+    favorites = await DatabaseHelper.instance.getFavorites();
+    print(favorites);
+    setState(() {
+      print(favorites);
+      emailProvider = emailProvider;
+      favorites = favorites;
+    });
+  }
+
+  void getCred() async {    //funcion como modelo, si se quita no hay diferencia
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    setState(() {
+      emailProvider = userPrefs.getString("email")!;
+    });
+  }
+
+  @override
+  void initState() {
+    getCred();
+    initialize();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context){
     return MaterialApp(
       home: Scaffold(
+          appBar: AppBar(
+            title: Text("Mis Favoritos"),
+            backgroundColor: Colors.indigo,
+          ),
+          drawer: DrawerWidget(user: emailProvider,),
           body: SafeArea(
             child: ListView.builder(
-              itemCount: names.length,
+              itemCount: (favorites.length == null) ? 0: favorites.length,
               itemBuilder: (context, index){
-                return Card(
+                if(this.favorites.length == 0) {
+                  return Card(
+                    color: Colors.white,
+                    elevation: 4.0,
                     child: ListTile(
-                      onTap: (){},
-                      title: Text(names[index][0],
-                        style: const TextStyle(
-                            fontSize: 20
-                        ),),
-                      subtitle: Text(
-                        "\$ " + names[index][2].toString(),
-                        style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold
-                        ),),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.favorite),
-                        color: Colors.redAccent,
-                        onPressed: () {  },
+                      onTap: () {},
+                      leading: CircleAvatar(),
+                      title: Text("No posees ninguna oficina"),
+                    ),
+                  );
+                } else {
+                  return Card(
+                    color: Colors.white,
+                    elevation: 4.0,
+                    child: ListTile(
+                      onTap: () {},
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(this.favorites[index].image),
                       ),
-                    )
-                );
+                      trailing: TextButton.icon(
+                          icon: Icon(Icons.cancel_rounded),
+                          label: const Text("",
+                            style: TextStyle(
+                              fontSize: 15.0,
+                            ),),
+                          onPressed: () => {
+                            setState(() {
+                              DatabaseHelper.instance.remove(this.favorites[index].id);
+                            })
+                          }
+                      ),
+                      title: Text(favorites[index].name),
+                      subtitle: Text('Score:'+ favorites[index].score.toString() + ' - Precio: S/.' + favorites[index].price.toString()+'0'),
+                    ),
+                  );
+                }
               },
             ),)
       ),
