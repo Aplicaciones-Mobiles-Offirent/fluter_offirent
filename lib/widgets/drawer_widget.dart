@@ -135,6 +135,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 Navigator.of(context).pushNamed('/provider_offices');
               },
             ),
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text("Mis Favoritos"),
+              onTap: () {
+                Navigator.of(context).pushNamed('/favorite_offices');
+              },
+            ),
 
             Divider(
               height: 100,
