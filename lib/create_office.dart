@@ -19,7 +19,7 @@ class CreateOfficePage extends StatefulWidget {
 
 class _CreateOfficePageState extends State<CreateOfficePage> {
 
-  String? accountEmail;
+  late String accountEmail;
 
   void getCred() async{
     SharedPreferences userPrefs = await SharedPreferences.getInstance();
@@ -116,7 +116,7 @@ class _CreateOfficePageState extends State<CreateOfficePage> {
               children: [
                 Row(
                   children: [
-                    Text("Imagen de la oficina"),
+                    Text("Imagen de la oficina:"),
                     SizedBox(width: 80,),
                     ElevatedButton(
                         style: ButtonStyle(
@@ -245,7 +245,7 @@ class _CreateOfficePageState extends State<CreateOfficePage> {
       uploadTask.whenComplete(() async {
         try{
           url = await officeImageRef.getDownloadURL().toString();
-          print("Image url: "+ url!);
+          print("Image url: "+ url);
 
         }catch(onError){
           print("Error");
@@ -253,7 +253,7 @@ class _CreateOfficePageState extends State<CreateOfficePage> {
 
       });
 
-      createOfficeWithUserInterface(_nameOfficeValue, url!, _descriptionOfficeValue, _addressOfficeValue, _capacityOfficeValue, _priceOfficeValue);
+      createOfficeWithUserInterface(_nameOfficeValue, url, _descriptionOfficeValue, _addressOfficeValue, _capacityOfficeValue, _priceOfficeValue);
 
       /////// Future de la api para crear Oficina
 

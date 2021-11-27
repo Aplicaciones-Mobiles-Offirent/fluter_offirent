@@ -118,17 +118,7 @@ class _PublicOfficesState extends State<PublicOffices> {
         ),*/
         title: Text("Oficinas"),
         backgroundColor: Colors.indigo,
-        actions: <Widget>[
-          IconButton(
-              onPressed: (){
-                print('Filter Button');   // consola
-              },
-              icon: const Icon(
-                Icons.tune,
-                semanticLabel: 'filter',
-              )
-          )
-        ],
+
       ),
       drawer: DrawerWidget(user: username,),
       body: GridView.count(

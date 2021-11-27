@@ -193,22 +193,16 @@ class _MyReservationsState extends State<MyReservations> {
                               ButtonBar(
 
                                 children:[
-                                  TextButton(
+                                  ElevatedButton(
                                     onPressed: () {
                                       confirmDeleteDialog(account.id, reservations[position].id);
                                     },
-                                    child: Text("Cancelar",
-                                    style: TextStyle(
-                                      color: Colors.red
-                                    ),)),
-                                  ElevatedButton(
-                                      style: ButtonStyle(
-                                          backgroundColor:  MaterialStateProperty.all<Color>(Colors.indigo)
-                                      ),
-                                      onPressed: (){},
-
-                                      child: Text("Ver"),
-                                      ),]
+                                    child: Text("Cancelar",),
+                                    style: ButtonStyle(
+                                        backgroundColor:  MaterialStateProperty.all<Color>(Colors.red)
+                                    ),
+                                  ),
+                                  ]
 
 
                               ),
