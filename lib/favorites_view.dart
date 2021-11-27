@@ -45,8 +45,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             title: Text("Mis Favoritos"),
             backgroundColor: Colors.indigo,
@@ -94,7 +93,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 }
               },
             ),)
-      ),
-    );
+      );
+
   }
 }

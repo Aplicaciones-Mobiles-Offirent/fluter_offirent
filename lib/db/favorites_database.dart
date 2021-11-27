@@ -95,4 +95,14 @@ class DatabaseHelper {
     print(id);
     return await db.delete('favorites', where: 'id = ?', whereArgs: [id]);
   }
+
+  Future<bool> exist(String name) async {
+    Database db = await instance.database;
+    var favorite = await db.query("favorites",where: 'name = ?', whereArgs: [name]);
+    if (favorite.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
