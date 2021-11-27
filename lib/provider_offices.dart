@@ -89,7 +89,12 @@ class _ProviderOfficesState extends State<ProviderOffices> {
             }
            }
           ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: (){
 
+          },
+          child: Icon(Icons.add,),
+          backgroundColor: Colors.indigo,),
     );
   }
 }
