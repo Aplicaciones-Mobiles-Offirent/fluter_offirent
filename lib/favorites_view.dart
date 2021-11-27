@@ -17,6 +17,24 @@ class _FavoritesPageState extends State<FavoritesPage> {
   String emailProvider="";
   List favorites = [];
 
+  confirmDeleteDialog(){
+    return showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        title: Text("Oficina eliminada"),
+        content: Text("Se eliminó la oficina seleccionada de la lista de Favoritos"),
+        actions: [
+          TextButton(
+              onPressed: (){
+                //Navigator.of(context).pop();
+                Navigator.of(context).pushNamedAndRemoveUntil("/favorite_offices",
+                    ModalRoute.withName("/public_offices"));
+              },
+              child: Text("Ok")),
+        ],
+      );
+    }, barrierDismissible: false);
+  }
+
   Future initialize() async {
     SharedPreferences userPrefs = await SharedPreferences.getInstance();
     emailProvider = userPrefs.getString("email")!;
@@ -83,7 +101,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                           onPressed: () => {
                             setState(() {
                               DatabaseHelper.instance.remove(this.favorites[index].id);
-                            })
+                            }),
+                            confirmDeleteDialog()
                           }
                       ),
                       title: Text(favorites[index].name),

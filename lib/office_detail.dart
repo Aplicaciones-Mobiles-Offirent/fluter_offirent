@@ -35,7 +35,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
           ),
           TextButton(
               onPressed: (){
-                Navigator.of(context).pushNamedAndRemoveUntil("/my_reservations",
+                Navigator.of(context).pushNamedAndRemoveUntil("/favorite_offices",
                     ModalRoute.withName("/favorite_offices"));
               },
               child: Text("Ver Oficina"))
