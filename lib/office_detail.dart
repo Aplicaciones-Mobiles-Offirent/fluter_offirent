@@ -1,65 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'db/favorites_database.dart';
-import 'model/office.dart';
-
-class OfficeDetail extends StatefulWidget {
+class OfficeDetail extends StatelessWidget {
 
   final office;
   final username;
 
   OfficeDetail(this.office, this.username);
-
-  @override
-  State<OfficeDetail> createState() => _OfficeDetailState();
-}
-
-class _OfficeDetailState extends State<OfficeDetail> {
-
-
-  createFavoriteConfirmDialog() {
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: Text("Oficina guardada"),
-        content: Text("La oficina se guardó con éxito en la sección de Favoritos"),
-        actions: [
-          TextButton(
-              onPressed: (){
-                Navigator.of(context).pop();
-              },
-              child: Text("Ok")
-          ),
-          TextButton(
-              onPressed: (){
-                Navigator.of(context).pushNamedAndRemoveUntil("/favorite_offices",
-                    ModalRoute.withName("/favorite_offices"));
-              },
-              child: Text("Ver Oficina"))
-        ],
-      );
-    });
-  }
-
-  createFavoriteErrormDialog() {
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: Text("Oficina ya existente!!!"),
-        content: Text("La oficina ya está guardada en la vista de Mis Favoritos"),
-        actions: [
-          TextButton(
-              onPressed: (){
-                Navigator.of(context).pop();
-              },
-              child: Text("Ok"))
-        ],
-      );
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +20,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
         body: ListView(
           children: <Widget>[
             Container(
-              child:  Text(widget.office["name"],
+              child:  Text(office["name"],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -82,14 +29,14 @@ class _OfficeDetailState extends State<OfficeDetail> {
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: Image.network(widget.office["image"],
+              child: Image.network(office["image"],
                   fit: BoxFit.cover),
 
 
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child:  Text(widget.office["description"],
+              child:  Text(office["description"],
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 15.0,
@@ -98,7 +45,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child: Text("Direccion: ${widget.office["address"]}",
+              child: Text("Direccion: ${office["address"]}",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 15.0,
@@ -107,7 +54,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child:  Text("Aforo: ${widget.office["capacity"]} personas",
+              child:  Text("Aforo: ${office["capacity"]} personas",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 15.0,
@@ -116,7 +63,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
               margin: EdgeInsets.all(10.0),
             ),
             Container(
-              child:  Text("Precio: S/.${widget.office["price"]}0 ",
+              child:  Text("Precio: S/.${office["price"]}0 ",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 15.0,
@@ -136,7 +83,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
             ),
             Container(
               child: RatingBar.builder(
-                initialRating: widget.office["score"],
+                initialRating: office["score"],
                 minRating: 0.5,
                 itemCount: 5,
                 allowHalfRating: true,
@@ -160,7 +107,7 @@ class _OfficeDetailState extends State<OfficeDetail> {
                     ),),
                   onPressed: (){
                     Navigator.of(context).pushNamed('/create_reservation',
-                    arguments: widget.office["id"]);
+                    arguments: office["id"]);
                   }),
               margin: EdgeInsets.all(10.0),
             ),
@@ -170,39 +117,11 @@ class _OfficeDetailState extends State<OfficeDetail> {
                   style: TextStyle(
                     fontSize: 15.0,
                   ),),
-                onPressed: () => saveFavorite()
-            )
+                onPressed: (){}),
           ],
         ),
       );
 
   }
-
-  saveFavorite() async {
-    if( await DatabaseHelper.instance.exist(widget.office["name"]) == true){
-      createFavoriteErrormDialog();
-    }
-    else {
-      await DatabaseHelper.instance.add(
-          Office(widget.office["id"],
-            widget.office["address"],
-            widget.office["name"],
-            widget.office["image"],
-            widget.office["floor"],
-            widget.office["capacity"],
-            widget.office["allowResource"],
-            widget.office["score"],
-            widget.office["description"],
-            widget.office["price"],
-            widget.office["status"],
-            widget.office["comment"],)
-      );
-      createFavoriteConfirmDialog();
-      print("Favorite with id ${widget.office["id"]} saved");
-    }
-
-  }
-
-
 
 }

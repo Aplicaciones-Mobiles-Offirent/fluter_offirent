@@ -135,13 +135,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 Navigator.of(context).pushNamed('/provider_offices');
               },
             ),
-            ListTile(
-              leading: Icon(Icons.favorite),
-              title: Text("Mis Favoritos"),
-              onTap: () {
-                Navigator.of(context).pushNamed('/favorite_offices');
-              },
-            ),
 
             Divider(
               height: 100,
@@ -154,7 +147,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               leading: Icon(Icons.account_circle_rounded),
               title: Text("Perfil"),
               onTap: () {
-                Navigator.of(context).pushNamed('/profile',arguments: widget.user);
+                Navigator.of(context).pushNamed('/profile_config_view');
               },
             ),
             ListTile(

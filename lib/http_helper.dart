@@ -1,7 +1,6 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/model/district.dart';
 import 'package:flutter_offirent/model/office.dart';
 import 'package:flutter_offirent/model/reservation.dart';
 import 'package:http/http.dart' as http;
@@ -9,14 +8,10 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'model/account.dart';
-
 const String urlBase = 'https://api-e404.herokuapp.com/api/';
 class HttpHelper {
 
-
-
   Future<http.Response> loginFromAPI(TextEditingController email, TextEditingController password) async{
-
       final String loginQuery = urlBase + "accounts/authenticate";
       http.Response response = await http.post(Uri.parse(loginQuery),
           body:{
@@ -27,13 +22,6 @@ class HttpHelper {
       return response;
 
     }
-
-
-
-
-
-
-
   Future<List> getAllOffices() async {
     final String officesQuery = urlBase+'offices';
     http.Response response = await http.get(Uri.parse(officesQuery));
@@ -115,6 +103,44 @@ class HttpHelper {
 
   }
 
+  Future<List> getAllDistricts() async{
+    String url_all_districts = '${urlBase}districts';
+
+    var data =  await http.get(Uri.parse(url_all_districts));
+    var jsonData = json.decode(data.body);
+
+    List Districts = jsonData.map((i) => Office.fromJson(i)).toList();
+    return Districts;
+  }
+
+  Future<Office> createOffice(String email, int district, String name, String image, String address, int floor, int capacity, int score,
+       String description, int price, String comment ) async {
+    String final_url = '${urlBase}accounts/email/$email/District=$district/offices';
+
+    Map data = {
+      'name'          : name,
+      'image'         : image,
+      'address'       : address,
+      'floor'         : floor,
+      'capacity'      : capacity,
+      'allowResource' : true,
+      'score'         : score,
+      'description'   : description,
+      'price'         : price,
+      'status'        : true,
+      'comment'       : comment
+    };
+    var bodyRequest = json.encode(data);
+    var jsonData;
+    var response = await http.post(Uri.parse(final_url), headers: {"Content-Type": "application/json" }, body: bodyRequest);
+    if(response.statusCode == 200) {
+      jsonData = json.decode(response.body);
+      return jsonData;
+    } else {
+      print(response.statusCode);
+      return null!;
+    }
+  }
 }
 
 Future<Account> getAccountWithoutClass(String email) async {

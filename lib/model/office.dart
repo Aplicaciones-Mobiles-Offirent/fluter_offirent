@@ -1,7 +1,5 @@
 import 'dart:ffi';
 
-import 'package:flutter_offirent/db/favorites_database.dart';
-
 class Office {
   int id=0;
   String address="";
@@ -32,45 +30,18 @@ class Office {
 
 
   Office.fromJson(Map<String, dynamic> parsedJson) {
-    bool resourceBool;
-    if (parsedJson['allowResource'] == 1) resourceBool = true;
-    else resourceBool = false;
-
-    bool statusBool;
-    if (parsedJson['status'] == 1) statusBool = true;
-    else statusBool = false;
-
-    print(parsedJson['allowResource'].toString());
     this.id = parsedJson['id'];
     this.name = parsedJson['name'];
     this.image = parsedJson['image'];
     this.address = parsedJson['address'];
     this.floor = parsedJson['floor'];
     this.capacity = parsedJson['capacity'];
-    this.allowResource = resourceBool;
+    this.allowResource = parsedJson['allowResource'];
     this.score = parsedJson['score'];
     this.description = parsedJson['description'];
     this.price = parsedJson['price'];
-    this.status = statusBool;
+    this.status = parsedJson['status'];
     this.comment = parsedJson['comment'];
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'address': address,
-      'image': image,
-      'name': name,
-      'floor': floor,
-      'capacity': capacity,
-      'allowResource': allowResource,
-      'score': score,
-      'description': description,
-      'price': price,
-      'status': status,
-      'comment': comment
-    };
-  }
-
 }
-

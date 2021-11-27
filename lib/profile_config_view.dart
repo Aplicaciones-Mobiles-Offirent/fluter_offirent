@@ -58,7 +58,7 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
                     buildTextField("First Name", "placeholder"),
                     buildTextField("Last Name", "placeholder"),
                     buildTextField("Identification", "placeholder"),
-                    //buildTextField("Type", "placeholder"),
+                    buildTextField("Type", "placeholder"),
                     buildTextField("Phone Number", "placeholder"),
                     const SizedBox(
                       height: 35,
@@ -67,9 +67,7 @@ class _ProfileConfigState extends State<ProfileConfigPage>{
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         OutlinedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+                          onPressed: () {},
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(
                                   const EdgeInsets.symmetric(horizontal: 50),
