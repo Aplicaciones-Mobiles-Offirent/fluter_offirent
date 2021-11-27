@@ -4,6 +4,7 @@ import 'package:flutter_offirent/login.dart';
 import 'package:flutter_offirent/my_reservations.dart';
 import 'package:flutter_offirent/office.dart';
 import 'package:flutter_offirent/office_detail.dart';
+import 'package:flutter_offirent/profile.dart';
 import 'package:flutter_offirent/profile_config_view.dart';
 import 'package:flutter_offirent/provider_offices.dart';
 //import 'package:flutter_offirent/main.dart';
@@ -50,6 +51,13 @@ class RouteGenerator {
               builder: (_) => ReservationPage(officeId: args,));
         }else
           {return _errorRoute();}
+
+      case '/profile':
+        if (args is String){
+          return MaterialPageRoute(builder: (_) => Profile(args));
+        }else
+        {return _errorRoute();}
+
     }
 
   }

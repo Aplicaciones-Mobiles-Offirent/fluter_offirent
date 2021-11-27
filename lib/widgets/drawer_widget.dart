@@ -147,7 +147,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               leading: Icon(Icons.account_circle_rounded),
               title: Text("Perfil"),
               onTap: () {
-                Navigator.of(context).pushNamed('/profile_config_view');
+                Navigator.of(context).pushNamed('/profile',arguments: widget.user);
               },
             ),
             ListTile(
