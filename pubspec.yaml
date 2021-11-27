@@ -48,6 +48,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   font_awesome_flutter: ^9.2.0
+  firebase_database: ^8.1.0
+  firebase_storage: ^10.1.0
+  image_picker: ^0.8.4+4
 
 
 dev_dependencies:

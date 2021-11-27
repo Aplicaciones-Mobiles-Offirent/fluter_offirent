@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_offirent/create_office.dart';
 import 'package:flutter_offirent/create_reservation.dart';
 import 'package:flutter_offirent/favorites_view.dart';
 import 'package:flutter_offirent/login.dart';
@@ -59,6 +60,9 @@ class RouteGenerator {
           return MaterialPageRoute(builder: (_) => Profile(args));
         }else
         {return _errorRoute();}
+
+      case '/create_office':
+        return MaterialPageRoute(builder: (_) => CreateOfficePage());
 
     }
 

@@ -91,7 +91,7 @@ class _ProviderOfficesState extends State<ProviderOffices> {
           ),
       floatingActionButton: FloatingActionButton(
           onPressed: (){
-
+            Navigator.of(context).pushNamed("/create_office");
           },
           child: Icon(Icons.add,),
           backgroundColor: Colors.indigo,),
